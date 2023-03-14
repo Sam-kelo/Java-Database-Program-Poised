@@ -1,4 +1,4 @@
-# Poised Project (Database Version)
+# Poised Project (Database)
 ## About
 Poised Project Database has been refactored and uses databases instead of textfiles to retrieve information. Poised Project Database combines both Java and 
 SQL(Structured Query Language) to form Java Database Programming with the core functionality of capturing, updating and finalising projects.
