@@ -42,6 +42,7 @@ public class PoisedProjectDatabase {
 				System.out.println("6. View incomplete, overdue and complete projects: ");
 				System.out.println("7. Generate an invoice and finalise a project: ");
 				System.out.println("8. Search projects");
+				System.out.println("9. Delete a project");
 
 				Scanner sc = new Scanner(System.in);
 				System.out.println("Enter choice here: ");
@@ -449,7 +450,26 @@ public class PoisedProjectDatabase {
 					}
 					
 					break;
+				case 9:
+					// Deleting a project.
+					try {		
+						int index = 0;
 
+						System.out.println("Enter the project number of the project to be deleted: ");
+						Scanner select  = new Scanner(System.in);
+						index = select.nextInt();
+						rowsAffected = statement.executeUpdate("DELETE FROM projects WHERE Project_Number = "+index);
+						rowsAffected = statement.executeUpdate("DELETE FROM architect WHERE Architect_Project_Number = "+index);
+						rowsAffected = statement.executeUpdate("DELETE FROM customer WHERE Customer_Project_Number = "+index);
+						rowsAffected = statement.executeUpdate("DELETE FROM project_manager WHERE Project_Manager_Project_Number = "+index);
+						rowsAffected = statement.executeUpdate("DELETE FROM structural_engineer WHERE Structural_Engineer_Project_Number = "+index);	
+						System.out.println("Project details deleted.");
+						break;
+					// Exception handling to handle incorrect input.
+					}catch(InputMismatchException e) {
+						System.out.println("Incorrect input. Please enter a valid id.");
+					}
+						
 				default:
 
 					System.out.println("Please enter a valid choice.");	
